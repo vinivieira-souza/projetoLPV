@@ -8,14 +8,13 @@ public class TelaLogin extends JFrame {
     private JPanel painelCentral;
     private JLabel lblCursor;
     
-    // Cores extraídas do seu design
     private final Color VERDE_NEON = new Color(57, 255, 20);
-    private final Color FUNDO_DARK = new Color(13, 17, 23); // Azul bem escuro/preto
-    private final Color BORDA_PAINEL = new Color(110, 118, 129); // Cinza azulado
+    private final Color FUNDO_DARK = new Color(13, 17, 23); 
+    private final Color BORDA_PAINEL = new Color(110, 118, 129);
 
     public TelaLogin() {
         setTitle("Detetive de Interface - Inicialização");
-        setSize(1200, 700); // Proporção mais próxima do print
+        setSize(1200, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         getContentPane().setBackground(Color.BLACK);
@@ -46,7 +45,7 @@ public class TelaLogin extends JFrame {
         painelCentral.setLayout(null);
         painelCentral.setVisible(false);
 
-        // Header do Painel: [ DETETIVE DE INTERFACE ]
+        // Header do Painel
         JPanel headerBox = new JPanel();
         headerBox.setBounds(40, 30, 380, 40);
         headerBox.setBackground(FUNDO_DARK);
@@ -59,7 +58,7 @@ public class TelaLogin extends JFrame {
         headerBox.add(titulo);
         painelCentral.add(headerBox);
 
-        // Divisor (Linha horizontal)
+        // Divisor
         JSeparator sep = new JSeparator();
         sep.setBounds(40, 85, 380, 2);
         sep.setForeground(BORDA_PAINEL);
@@ -75,7 +74,7 @@ public class TelaLogin extends JFrame {
         JPanel boxUser = createInputBox("DETETIVE", 120, 115);
         lblCursor = new JLabel("█");
         lblCursor.setForeground(VERDE_NEON);
-        lblCursor.setBounds(85, 0, 20, 30); // Posicionado dentro da box
+        lblCursor.setBounds(75, 0, 20, 30);
         boxUser.add(lblCursor);
         painelCentral.add(boxUser);
 
@@ -99,10 +98,9 @@ public class TelaLogin extends JFrame {
         btnIniciar.setBorder(new LineBorder(new Color(50, 70, 100), 1));
         btnIniciar.addActionListener(e -> {
             new Desktop().setVisible(true);
-            dispose(); // Fecha a tela de login
+            dispose(); 
         });
-        
-        // Efeito de hover (Microinteração) 
+         
         btnIniciar.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e) { btnIniciar.setBorder(new LineBorder(VERDE_NEON, 1)); }
             public void mouseExited(MouseEvent e) { btnIniciar.setBorder(new LineBorder(new Color(50, 70, 100), 1)); }
@@ -111,7 +109,7 @@ public class TelaLogin extends JFrame {
         painelCentral.add(btnIniciar);
 
         JLabel lblDica = new JLabel("Pressione para começar a missão", SwingConstants.CENTER);
-        lblDica.setForeground(new Color(0, 100, 0)); // Verde escuro
+        lblDica.setForeground(new Color(0, 100, 0)); 
         lblDica.setBounds(0, 285, 460, 20);
         lblDica.setFont(new Font("Monospaced", Font.PLAIN, 12));
         painelCentral.add(lblDica);
@@ -126,7 +124,7 @@ public class TelaLogin extends JFrame {
         box.setBorder(new LineBorder(new Color(45, 55, 72), 1));
         
         JLabel lblTexto = new JLabel(texto);
-        lblTexto.setForeground(new Color(100, 150, 150)); // Cor levemente azulada/cinza
+        lblTexto.setForeground(new Color(100, 150, 150)); 
         lblTexto.setBounds(10, 0, 280, 30);
         lblTexto.setFont(new Font("Monospaced", Font.BOLD, 14));
         

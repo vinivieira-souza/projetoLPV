@@ -6,7 +6,7 @@ import java.awt.event.*;
 public class JanelaDocumentos extends JInternalFrame {
     private JPanel painelConteudo;
     private JLabel lblCaminho;
-    private Desktop mainDesktop; // Referência para atualizar o visor de pistas
+    private Desktop mainDesktop;
 
     public JanelaDocumentos(Desktop desktop) {
         super("Documentos", true, true, true, true);
@@ -15,7 +15,7 @@ public class JanelaDocumentos extends JInternalFrame {
         setSize(600, 450);
         setLocation(50, 50);
         setLayout(new BorderLayout());
-        setBackground(new Color(192, 192, 192)); // Cinza Windows
+        setBackground(new Color(192, 192, 192)); 
 
         configurarBarraCaminho();
         
@@ -44,25 +44,52 @@ public class JanelaDocumentos extends JInternalFrame {
         limparEAtualizar("/root");
         adicionarElemento("Projetos", "pasta", e -> exibirDiretorioProjetos());
         adicionarElemento("Pessoal", "pasta", e -> exibirDiretorioPessoal());
-        adicionarElemento("readme.txt", "arquivo", e -> abrirArquivoTexto("README", "Conteúdo do README aqui..."));
+        adicionarElemento("readme.txt", "arquivo", e -> abrirArquivoTexto("README", "BEM-VINDO AO SISTEMA\r\n" + //
+                        "\r\n" + //
+                        "Este é o diretório de documentos do administrador.\r\n" + //
+                        "Explore as pastas e arquivos para encontrar pistas."));
         adicionarElemento("acesso_negado.txt", "arquivo", e -> mostrarErroAcesso());
     }
 
     private void exibirDiretorioProjetos() {
         limparEAtualizar("/root/Projetos");
         adicionarElemento("Voltar", "voltar", e -> exibirDiretorioRoot());
-        adicionarElemento("projeto_secreto.txt", "arquivo", e -> abrirArquivoTexto("Projeto Secreto", "Dados confidenciais..."));
+        adicionarElemento("projeto_secreto.txt", "arquivo", e -> abrirArquivoTexto("Projeto Secreto", "PROJETO CONFIDENCIAL\r\n" + //
+                        "\r\n" + //
+                        "Código de acesso necessário.\r\n" + //
+                        "\r\n" + //
+                        "Formato: XX-XX-XX\r\n" + //
+                        "\r\n" + //
+                        "Primeira parte encontrada nos e-mails."));
         
-        // Arquivo VERDE (Pista) - Imagem image_da4453
         adicionarElemento("notas.txt", "pista", e -> abrirPista("R3"));
     }
 
     private void exibirDiretorioPessoal() {
         limparEAtualizar("/root/Pessoal");
         adicionarElemento("Voltar", "voltar", e -> exibirDiretorioRoot());
-        adicionarElemento("lembretes.txt", "arquivo", e -> abrirArquivoTexto("Lembretes", "Não esquecer de..."));
-        adicionarElemento("aniversarios.txt", "arquivo", e -> abrirArquivoTexto("Aniversários", "João: 15/05..."));
-        adicionarElemento("receita.txt", "arquivo", e -> abrirArquivoTexto("Receita", "Ingredientes: ..."));
+        adicionarElemento("lembretes.txt", "arquivo", e -> abrirArquivoTexto("Lembretes", "LEMBRETES PESSOAIS\r\n" + //
+                        "\r\n" + //
+                        "- Trocar senha a cada 30 dias\r\n" + //
+                        "- Não anotar senhas em papel\r\n" + //
+                        "- Usar combinação de letras e números\r\n" + //
+                        "- Verificar lixeira regularmente"));
+        adicionarElemento("aniversarios.txt", "arquivo", e -> abrirArquivoTexto("Aniversários", "DATAS IMPORTANTES\r\n" + //
+                        "\r\n" + //
+                        "Maria: 15/03\r\n" + //
+                        "João: 22/07\r\n" + //
+                        "Sistema criado em: 1995\r\n" + //
+                        "\r\n" + //
+                        "💡 Dica: Anos são importantes!"));
+        adicionarElemento("receita.txt", "arquivo", e -> abrirArquivoTexto("Receita", "RECEITA DE BOLO\r\n" + //
+                        "\r\n" + //
+                        "Ingredientes:\r\n" + //
+                        "- 3 cenouras\r\n" + //
+                        "- 4 ovos\r\n" + //
+                        "- Óleo\r\n" + //
+                        "- Açúcar\r\n" + //
+                        "\r\n" + //
+                        "[ARQUIVO IRRELEVANTE]"));
     }
 
     // --- COMPONENTES VISUAIS ---
@@ -77,12 +104,11 @@ public class JanelaDocumentos extends JInternalFrame {
         btn.setHorizontalTextPosition(SwingConstants.CENTER);
         btn.setFont(new Font("SansSerif", Font.PLAIN, 11));
 
-        // Estilização baseada no tipo (Simulando os ícones das imagens)
         if (tipo.equals("pasta") || tipo.equals("voltar")) {
-            btn.setForeground(new Color(184, 134, 11)); // Amarelo pasta
+            btn.setForeground(new Color(184, 134, 11)); 
             btn.setText("📁 " + nome);
         } else if (tipo.equals("pista")) {
-            btn.setForeground(new Color(0, 200, 0)); // Verde Pista [cite: 66]
+            btn.setForeground(new Color(0, 200, 0)); 
             btn.setText("📄! " + nome);
         } else {
             btn.setForeground(Color.DARK_GRAY);
@@ -110,7 +136,6 @@ public class JanelaDocumentos extends JInternalFrame {
         JTextArea area = new JTextArea(conteudo);
         area.setMargin(new java.awt.Insets(10, 10, 10, 10));
         area.setFont(new Font("Monospaced", Font.PLAIN, 13));
-        // COLOQUE O CONTEÚDO DOS ARQUIVOS AQUI [cite: 12]
         
         txtWindow.add(new JScrollPane(area));
         getDesktopPane().add(txtWindow);
@@ -118,21 +143,20 @@ public class JanelaDocumentos extends JInternalFrame {
     }
 
     private void mostrarErroAcesso() {
-        // Reprodução da image_da4399 (Janela Vermelha) [cite: 45, 46]
         JOptionPane.showMessageDialog(this, 
-            "Arquivo corrompido ou sem informações relevantes", 
+            "Arquivo corrompido", 
             "X Erro", 
             JOptionPane.ERROR_MESSAGE);
     }
 
     private void abrirPista(String fragmento) {
-        // Reprodução da image_d9edfd (Janela Verde de Sucesso) [cite: 48, 49]
         JOptionPane.showMessageDialog(this, 
             "Pista encontrada: " + fragmento, 
             "✓ Sucesso", 
             JOptionPane.INFORMATION_MESSAGE);
-        
-        // Lógica para atualizar o visor de pistas no Desktop principal [cite: 44]
-        // mainDesktop.revelarPista(0, fragmento); 
+
+        if (mainDesktop != null) {
+            mainDesktop.revelarPista(0, fragmento); 
+        }
     }
 }
