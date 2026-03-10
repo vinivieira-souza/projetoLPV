@@ -8,11 +8,13 @@ public class Desktop extends JFrame {
     private final Color VERDE_PETROLEO = new Color(0, 128, 128);
     private final Color CINZA_WINDOWS = new Color(192, 192, 192);
     private JLabel[] lblPistas = new JLabel[5];
-    private final Color VERDE_DESATIVADO = new Color(0, 50, 0); 
+    private final Color VERDE_DESATIVADO = new Color(0, 50, 0);
     private int pistasContador = 0;
     private JLabel lblProgressoTexto;
     private JPanel barraVerde;
     private final int LARGURA_MAX_BARRA = 180;
+    private JLabel lblMissaoRodape;
+    private JLabel lblSenhaFinalVisor;
 
     public Desktop() {
         setTitle("Detetive de Interface");
@@ -40,7 +42,7 @@ public class Desktop extends JFrame {
 
         JPanel header = new JPanel(new FlowLayout(FlowLayout.LEFT));
         header.setBounds(5, 5, 190, 30);
-        header.setBackground(new Color(0, 0, 128)); 
+        header.setBackground(new Color(0, 0, 128));
         JLabel lblTitulo = new JLabel("🔒 Visor de Pistas");
         lblTitulo.setForeground(Color.WHITE);
         lblTitulo.setFont(new Font("SansSerif", Font.BOLD, 12));
@@ -67,7 +69,7 @@ public class Desktop extends JFrame {
         areaFragmentos.setBounds(10, 90, 180, 240);
         areaFragmentos.setBackground(Color.BLACK);
         areaFragmentos.setBorder(new LineBorder(Color.GRAY));
-        areaFragmentos.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 10)); 
+        areaFragmentos.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 10));
 
         JLabel lblFragTitulo = new JLabel("FRAGMENTOS COLETADOS:");
         lblFragTitulo.setForeground(new Color(57, 255, 20));
@@ -90,10 +92,10 @@ public class Desktop extends JFrame {
         boxSenha.setBackground(CINZA_WINDOWS);
         boxSenha.setBorder(new TitledBorder(new LineBorder(Color.GRAY), "SENHA DESCOBERTA"));
 
-        JLabel lblSenha = new JLabel("??-??-??-??-??", SwingConstants.CENTER);
-        lblSenha.setBounds(5, 15, 170, 40);
-        lblSenha.setFont(new Font("Monospaced", Font.BOLD, 14));
-        boxSenha.add(lblSenha);
+        lblSenhaFinalVisor = new JLabel("??-??-??-??-??", SwingConstants.CENTER);
+        lblSenhaFinalVisor.setBounds(5, 15, 170, 40);
+        lblSenhaFinalVisor.setFont(new Font("Monospaced", Font.BOLD, 14));
+        boxSenha.add(lblSenhaFinalVisor);
 
         visorExterno.add(boxSenha);
         desktop.add(visorExterno);
@@ -156,6 +158,30 @@ public class Desktop extends JFrame {
                         janelaLix.setSelected(true);
                     } catch (java.beans.PropertyVetoException ex) {
                         ex.printStackTrace();
+                    }
+                });
+            }
+            if ("Desafio".equals(nome)) {
+                btn.addActionListener(e -> {
+                    JanelaDesafio janelaDes = new JanelaDesafio(this);
+                    desktop.add(janelaDes);
+                    janelaDes.setVisible(true);
+
+                    try {
+                        janelaDes.setSelected(true);
+                    } catch (java.beans.PropertyVetoException ex) {
+                        ex.printStackTrace();
+                    }
+                });
+            }
+            if ("Logs do Sistema".equals(nome)) {
+                btn.addActionListener(e -> {
+                    JanelaAnalise janelaLogs = new JanelaAnalise(this);
+                    desktop.add(janelaLogs);
+                    janelaLogs.setVisible(true);
+                    try {
+                        janelaLogs.setSelected(true);
+                    } catch (Exception ex) {
                     }
                 });
             } else {
@@ -260,10 +286,10 @@ public class Desktop extends JFrame {
         barra.setBackground(CINZA_WINDOWS);
         barra.setBorder(new BevelBorder(BevelBorder.RAISED));
 
-        JLabel lblMissao = new JLabel("🔍 Missão: Encontre a senha do administrador explorando os arquivos");
-        lblMissao.setBounds(100, 5, 600, 30);
-        lblMissao.setForeground(new Color(50, 50, 50));
-        barra.add(lblMissao);
+        lblMissaoRodape = new JLabel("🔍 Missão: Encontre a senha do administrador explorando os arquivos");
+        lblMissaoRodape.setBounds(100, 5, 600, 30);
+        lblMissaoRodape.setForeground(new Color(50, 50, 50));
+        barra.add(lblMissaoRodape);
 
         JLabel lblHora = new JLabel("14:45", SwingConstants.CENTER);
         lblHora.setBounds(1180, 5, 80, 30);
@@ -276,17 +302,42 @@ public class Desktop extends JFrame {
     public void revelarPista(int indice, String valor) {
         if (indice >= 0 && indice < lblPistas.length) {
             lblPistas[indice].setText("▣ > " + valor);
-            lblPistas[indice].setForeground(new Color(57, 255, 20)); 
-            
+            lblPistas[indice].setForeground(new Color(57, 255, 20));
+
             pistasContador++;
             lblProgressoTexto.setText("Progresso: " + pistasContador + "/5");
-            
+
             int novaLargura = (LARGURA_MAX_BARRA / 5) * pistasContador;
 
             barraVerde.setSize(novaLargura, 20);
 
             barraVerde.revalidate();
             barraVerde.repaint();
+
+            if (pistasContador == 5) {
+                finalizarJogo();
+            }
         }
+    }
+
+    private void finalizarJogo() {
+        lblSenhaFinalVisor.setText("DF-5_-O9-TR-R3");
+        lblSenhaFinalVisor.setForeground(new Color(57, 255, 20));
+
+        lblMissaoRodape.setText("✓ Missão concluída com sucesso!");
+        lblMissaoRodape.setForeground(new Color(0, 150, 0));
+
+        for (JInternalFrame frame : desktop.getAllFrames()) {
+            frame.dispose();
+        }
+
+        JanelaVitoria vitoria = new JanelaVitoria(this);
+        desktop.add(vitoria);
+        vitoria.setVisible(true);
+    }
+
+    public void reiniciarJogo() {
+        this.dispose();
+        SwingUtilities.invokeLater(() -> new TelaLogin().setVisible(true));
     }
 }
