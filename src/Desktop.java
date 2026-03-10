@@ -119,73 +119,55 @@ public class Desktop extends JFrame {
             // Aqui você adicionaria o ícone depois: btn.setIcon(new
             // ImageIcon("caminho.png"));
 
-            if ("Bem-vindo".equals(nome)) {
-                btn.addActionListener(e -> abrirJanelaBemVindo());
-            }
-            if ("Documentos".equals(nome)) {
-                btn.addActionListener(e -> {
-                    JanelaDocumentos janelaDoc = new JanelaDocumentos(this);
-                    desktop.add(janelaDoc);
-                    janelaDoc.setVisible(true);
-
-                    try {
-                        janelaDoc.setSelected(true);
-                    } catch (java.beans.PropertyVetoException ex) {
-                        ex.printStackTrace();
-                    }
-                });
-            }
-            if ("E-mail".equals(nome)) {
-                btn.addActionListener(e -> {
-                    JanelaEmail janelaEmail = new JanelaEmail(this);
-                    desktop.add(janelaEmail);
-                    janelaEmail.setVisible(true);
-
-                    try {
-                        janelaEmail.setSelected(true);
-                    } catch (java.beans.PropertyVetoException ex) {
-                        ex.printStackTrace();
-                    }
-                });
-            }
-            if ("Lixeira".equals(nome)) {
-                btn.addActionListener(e -> {
-                    JanelaLixeira janelaLix = new JanelaLixeira(this);
-                    desktop.add(janelaLix);
-                    janelaLix.setVisible(true);
-
-                    try {
-                        janelaLix.setSelected(true);
-                    } catch (java.beans.PropertyVetoException ex) {
-                        ex.printStackTrace();
-                    }
-                });
-            }
-            if ("Desafio".equals(nome)) {
-                btn.addActionListener(e -> {
-                    JanelaDesafio janelaDes = new JanelaDesafio(this);
-                    desktop.add(janelaDes);
-                    janelaDes.setVisible(true);
-
-                    try {
-                        janelaDes.setSelected(true);
-                    } catch (java.beans.PropertyVetoException ex) {
-                        ex.printStackTrace();
-                    }
-                });
-            }
-            if ("Logs do Sistema".equals(nome)) {
-                btn.addActionListener(e -> {
-                    JanelaAnalise janelaLogs = new JanelaAnalise(this);
-                    desktop.add(janelaLogs);
-                    janelaLogs.setVisible(true);
-                    try {
-                        janelaLogs.setSelected(true);
-                    } catch (Exception ex) {
-                    }
-                });
-            } else {
-                btn.addActionListener(e -> abrirJanelaGenerica(nome));
+            switch (nome) {
+                case "Bem-vindo":
+                    btn.addActionListener(e -> abrirJanelaBemVindo());
+                    break;
+                    
+                case "Documentos":
+                    btn.addActionListener(e -> {
+                        JanelaDocumentos janelaDoc = new JanelaDocumentos(this);
+                        desktop.add(janelaDoc);
+                        janelaDoc.setVisible(true);
+                        try { janelaDoc.setSelected(true); } catch (Exception ex) {}
+                    });
+                    break;
+                    
+                case "E-mail":
+                    btn.addActionListener(e -> {
+                        JanelaEmail janelaEmail = new JanelaEmail(this);
+                        desktop.add(janelaEmail);
+                        janelaEmail.setVisible(true);
+                        try { janelaEmail.setSelected(true); } catch (Exception ex) {}
+                    });
+                    break;
+                    
+                case "Lixeira":
+                    btn.addActionListener(e -> {
+                        JanelaLixeira janelaLix = new JanelaLixeira(this);
+                        desktop.add(janelaLix);
+                        janelaLix.setVisible(true);
+                        try { janelaLix.setSelected(true); } catch (Exception ex) {}
+                    });
+                    break;
+                    
+                case "Desafio":
+                    btn.addActionListener(e -> {
+                        JanelaDesafio janelaDes = new JanelaDesafio(this);
+                        desktop.add(janelaDes);
+                        janelaDes.setVisible(true);
+                        try { janelaDes.setSelected(true); } catch (Exception ex) {}
+                    });
+                    break;
+                    
+                case "Logs do Sistema":
+                    btn.addActionListener(e -> {
+                        JanelaAnalise janelaLogs = new JanelaAnalise(this);
+                        desktop.add(janelaLogs);
+                        janelaLogs.setVisible(true);
+                        try { janelaLogs.setSelected(true); } catch (Exception ex) {}
+                    });
+                    break;
             }
 
             desktop.add(btn);
@@ -229,27 +211,6 @@ public class Desktop extends JFrame {
         JScrollPane scroll = new JScrollPane(conteudo);
         scroll.setBorder(null);
         janela.add(scroll, BorderLayout.CENTER);
-
-        janela.setVisible(true);
-        desktop.add(janela);
-        try {
-            janela.setSelected(true);
-        } catch (Exception e) {
-        }
-    }
-
-    private void abrirJanelaGenerica(String titulo) {
-        JInternalFrame janela = new JInternalFrame(titulo, true, true, true, true);
-        janela.setBounds(200, 100, 600, 400);
-        janela.setLayout(new BorderLayout());
-        janela.setBackground(Color.WHITE);
-        janela.setResizable(true);
-        janela.setIconifiable(true);
-        janela.setMaximizable(true);
-        janela.setClosable(true);
-
-        JLabel conteudo = new JLabel("Conteúdo de " + titulo, SwingConstants.CENTER);
-        janela.add(conteudo, BorderLayout.CENTER);
 
         janela.setVisible(true);
         desktop.add(janela);

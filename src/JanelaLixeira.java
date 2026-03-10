@@ -95,15 +95,24 @@ public class JanelaLixeira extends JInternalFrame {
         JButton btn = new JButton();
         btn.setLayout(new FlowLayout(FlowLayout.LEFT));
         btn.setMaximumSize(new Dimension(250, 60));
-        btn.setBackground(Color.WHITE);
-        btn.setBorder(new LineBorder(ehPista ? new Color(200, 255, 200) : Color.LIGHT_GRAY));
+        
+        // Configurações visuais dinâmicas (Fundo e Borda)
+        Color corFundo = ehPista ? new Color(240, 255, 240) : Color.WHITE;
+        Color corBorda = ehPista ? new Color(50, 205, 50) : Color.LIGHT_GRAY;
+        Color corTexto = ehPista ? new Color(0, 150, 0) : Color.BLACK;
+        
+        btn.setBackground(corFundo);
+        btn.setBorder(new LineBorder(corBorda, ehPista ? 2 : 1)); 
 
-        JLabel lblIcone = new JLabel("📄"); // Substituir por ícone real depois
+        JLabel lblIcone = new JLabel("📄");
+        
         JPanel texto = new JPanel(new GridLayout(2, 1));
-        texto.setBackground(Color.WHITE);
+        texto.setBackground(corFundo);
         
         JLabel lblNome = new JLabel(nome);
         lblNome.setFont(new Font("SansSerif", Font.BOLD, 12));
+        lblNome.setForeground(corTexto);
+        
         JLabel lblData = new JLabel("Deletado: " + data);
         lblData.setFont(new Font("SansSerif", Font.PLAIN, 10));
 

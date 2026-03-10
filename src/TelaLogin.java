@@ -72,9 +72,10 @@ public class TelaLogin extends JFrame {
         painelCentral.add(lblUserTag);
 
         JPanel boxUser = createInputBox("DETETIVE", 120, 115);
-        lblCursor = new JLabel("█");
+        lblCursor = new JLabel("|");
         lblCursor.setForeground(VERDE_NEON);
         lblCursor.setBounds(75, 0, 20, 30);
+        lblCursor.setFont(new Font("Monospaced", Font.BOLD, 14));
         boxUser.add(lblCursor);
         painelCentral.add(boxUser);
 
