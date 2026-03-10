@@ -7,9 +7,6 @@ public class JanelaEmail extends JInternalFrame {
     private JPanel painelLista;
     private JPanel painelLeitura;
     private Desktop mainDesktop;
-    
-    private final Color AZUL_WINDOWS = new Color(0, 0, 128);
-    private final Color CINZA_WINDOWS = new Color(192, 192, 192);
 
     public JanelaEmail(Desktop desktop) {
         super("Cliente de E-mail", true, true, true, true);

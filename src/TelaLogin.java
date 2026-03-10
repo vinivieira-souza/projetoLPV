@@ -134,7 +134,6 @@ public class TelaLogin extends JFrame {
     }
 
     private void configurarRodape() {
-        String f = "Monospaced";
         JLabel v = new JLabel("VERSÃO: 2.0.1995");
         v.setBounds(50, 620, 200, 20);
         v.setForeground(new Color(0, 50, 0));
