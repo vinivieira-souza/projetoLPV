@@ -116,56 +116,79 @@ public class Desktop extends JFrame {
             btn.setHorizontalTextPosition(SwingConstants.CENTER);
             btn.setFont(new Font("SansSerif", Font.PLAIN, 11));
 
-            // Aqui você adicionaria o ícone depois: btn.setIcon(new
-            // ImageIcon("caminho.png"));
+            String nomeArquivoIcone = nome.toLowerCase()
+                    .replace(" ", "")
+                    .replace("-", "") + ".png";
+
+            java.net.URL imgURL = getClass().getResource("/icones/" + nomeArquivoIcone);
+            if (imgURL != null) {
+                btn.setIcon(new ImageIcon(imgURL));
+            } else {
+                System.out.println("Ícone não encontrado: /icones/" + nomeArquivoIcone);
+            }
 
             switch (nome) {
                 case "Bem-vindo":
                     btn.addActionListener(e -> abrirJanelaBemVindo());
                     break;
-                    
+
                 case "Documentos":
                     btn.addActionListener(e -> {
                         JanelaDocumentos janelaDoc = new JanelaDocumentos(this);
                         desktop.add(janelaDoc);
                         janelaDoc.setVisible(true);
-                        try { janelaDoc.setSelected(true); } catch (Exception ex) {}
+                        try {
+                            janelaDoc.setSelected(true);
+                        } catch (Exception ex) {
+                        }
                     });
                     break;
-                    
+
                 case "E-mail":
                     btn.addActionListener(e -> {
                         JanelaEmail janelaEmail = new JanelaEmail(this);
                         desktop.add(janelaEmail);
                         janelaEmail.setVisible(true);
-                        try { janelaEmail.setSelected(true); } catch (Exception ex) {}
+                        try {
+                            janelaEmail.setSelected(true);
+                        } catch (Exception ex) {
+                        }
                     });
                     break;
-                    
+
                 case "Lixeira":
                     btn.addActionListener(e -> {
                         JanelaLixeira janelaLix = new JanelaLixeira(this);
                         desktop.add(janelaLix);
                         janelaLix.setVisible(true);
-                        try { janelaLix.setSelected(true); } catch (Exception ex) {}
+                        try {
+                            janelaLix.setSelected(true);
+                        } catch (Exception ex) {
+                        }
                     });
                     break;
-                    
+
                 case "Desafio":
                     btn.addActionListener(e -> {
                         JanelaDesafio janelaDes = new JanelaDesafio(this);
                         desktop.add(janelaDes);
                         janelaDes.setVisible(true);
-                        try { janelaDes.setSelected(true); } catch (Exception ex) {}
+                        try {
+                            janelaDes.setSelected(true);
+                        } catch (Exception ex) {
+                        }
                     });
                     break;
-                    
+
                 case "Logs do Sistema":
                     btn.addActionListener(e -> {
                         JanelaAnalise janelaLogs = new JanelaAnalise(this);
                         desktop.add(janelaLogs);
                         janelaLogs.setVisible(true);
-                        try { janelaLogs.setSelected(true); } catch (Exception ex) {}
+                        try {
+                            janelaLogs.setSelected(true);
+                        } catch (Exception ex) {
+                        }
                     });
                     break;
             }
@@ -191,6 +214,13 @@ public class Desktop extends JFrame {
         conteudo.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
 
         JLabel lblBoasVindas = new JLabel("Bem-vindo, Detetive!", SwingConstants.CENTER);
+        java.net.URL detetiveUrl = getClass().getResource("/icones/detetive.png");
+        if (detetiveUrl != null) {
+            lblBoasVindas.setIcon(new ImageIcon(detetiveUrl));
+            lblBoasVindas.setVerticalTextPosition(SwingConstants.BOTTOM);
+            lblBoasVindas.setHorizontalTextPosition(SwingConstants.CENTER);
+            lblBoasVindas.setIconTextGap(15);
+        }
         lblBoasVindas.setAlignmentX(Component.CENTER_ALIGNMENT);
         lblBoasVindas.setFont(new Font("SansSerif", Font.BOLD, 24));
         conteudo.add(lblBoasVindas);
