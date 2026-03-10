@@ -22,14 +22,13 @@ public class JanelaLixeira extends JInternalFrame {
     }
 
     private void configurarInterface() {
-        // Cabeçalho com botão Esvaziar (image_510f35)
         JPanel topo = new JPanel(new BorderLayout());
         topo.setBackground(CINZA_WINDOWS);
         topo.setBorder(new EmptyBorder(5, 10, 5, 10));
         
         JLabel lblTitulo = new JLabel("Lixeira (3 itens)");
         JButton btnEsvaziar = new JButton("Esvaziar Lixeira");
-        btnEsvaziar.addActionListener(e -> resetarVisualizacao()); // Volta ao estado inicial
+        btnEsvaziar.addActionListener(e -> resetarVisualizacao());
         
         topo.add(lblTitulo, BorderLayout.WEST);
         topo.add(btnEsvaziar, BorderLayout.EAST);
@@ -57,10 +56,8 @@ public class JanelaLixeira extends JInternalFrame {
         painelVisualizacao.removeAll();
         painelVisualizacao.setBackground(Color.WHITE);
         
-        // Placeholder (image_510f35)
         JLabel placeholder = new JLabel("Selecione um item para visualizar", SwingConstants.CENTER);
         placeholder.setForeground(Color.GRAY);
-        // Aqui você adicionaria o ícone de arquivo grande depois
         painelVisualizacao.add(placeholder, BorderLayout.CENTER);
         
         painelVisualizacao.revalidate();
@@ -68,7 +65,6 @@ public class JanelaLixeira extends JInternalFrame {
     }
 
     private void popularLixeira() {
-        // Arquivo Comum (image_510f12)
         adicionarItemLixeira("senha_antiga.txt", "10/03/2024", false, e -> {
             mostrarDetalhesArquivo("senha_antiga.txt", "10/03/2024", 
                 "Senhas anteriores:\n\nVersão 1: ABC123\nVersão 2: XYZ789\nVersão 3: ******\n\n[ARQUIVO DELETADO POR SEGURANÇA]", false);
@@ -96,7 +92,6 @@ public class JanelaLixeira extends JInternalFrame {
         btn.setLayout(new FlowLayout(FlowLayout.LEFT));
         btn.setMaximumSize(new Dimension(250, 60));
         
-        // Configurações visuais dinâmicas (Fundo e Borda)
         Color corFundo = ehPista ? new Color(240, 255, 240) : Color.WHITE;
         Color corBorda = ehPista ? new Color(50, 205, 50) : Color.LIGHT_GRAY;
         Color corTexto = ehPista ? new Color(0, 150, 0) : Color.BLACK;
@@ -129,7 +124,6 @@ public class JanelaLixeira extends JInternalFrame {
         painelVisualizacao.removeAll();
         painelVisualizacao.setBackground(CINZA_WINDOWS);
 
-        // Header do detalhe
         JPanel header = new JPanel(new GridLayout(2, 1));
         header.setBackground(CINZA_WINDOWS);
         header.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -149,7 +143,7 @@ public class JanelaLixeira extends JInternalFrame {
             btnRestaurar.setPreferredSize(new Dimension(0, 40));
             btnRestaurar.addActionListener(e -> {
                 JOptionPane.showMessageDialog(this, "Pista encontrada: O9", "✓ Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                if(mainDesktop != null) mainDesktop.revelarPista(2, "O9"); // Atualiza índice 2 no Visor [cite: 44]
+                if(mainDesktop != null) mainDesktop.revelarPista(2, "O9");
                 btnRestaurar.setText("✓ Restaurado!");
                 btnRestaurar.setEnabled(false);
             });

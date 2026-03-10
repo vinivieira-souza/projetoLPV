@@ -68,12 +68,11 @@ public class JanelaDesafio extends JInternalFrame {
                 ));
                 label.setBackground(isSelected ? new Color(230, 240, 255) : Color.WHITE);
                 label.setOpaque(true);
-                label.setIcon(UIManager.getIcon("FileView.fileIcon")); // Ícone de arquivo
+                label.setIcon(UIManager.getIcon("FileView.fileIcon")); 
                 return label;
             }
         });
 
-        // Lógica de Arrastar e Soltar (Drag & Drop)
         listaArquivos.setTransferHandler(new TransferHandler() {
             private int indexRemovido = -1;
             private int indexAdicionado = -1;
@@ -115,7 +114,6 @@ public class JanelaDesafio extends JInternalFrame {
                     verificarOrdenacao();
                 }
                 
-                // Limpa as variáveis para o próximo arrasto
                 indexRemovido = -1;
                 indexAdicionado = -1;
             }

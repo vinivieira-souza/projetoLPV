@@ -15,7 +15,7 @@ public class JanelaAnalise extends JInternalFrame {
         setSize(550, 400);
         setLocation(200, 100);
         setLayout(new BorderLayout());
-        getContentPane().setBackground(new Color(211, 211, 211)); // Fundo cinza claro
+        getContentPane().setBackground(new Color(211, 211, 211)); 
 
         // Borda amarela externa (simulando a janela ativa do seu print)
         setBorder(BorderFactory.createLineBorder(new Color(255, 215, 0), 2));
@@ -42,7 +42,7 @@ public class JanelaAnalise extends JInternalFrame {
         areaLogs.setMargin(new Insets(15, 15, 15, 15));
         
         JScrollPane scroll = new JScrollPane(areaLogs);
-        scroll.setBorder(new EmptyBorder(10, 10, 10, 10)); // Espaçamento entre texto e borda da janela
+        scroll.setBorder(new EmptyBorder(10, 10, 10, 10));
         scroll.setBackground(new Color(211, 211, 211));
         
         add(scroll, BorderLayout.CENTER);
@@ -67,32 +67,28 @@ public class JanelaAnalise extends JInternalFrame {
     }
 
     private void iniciarAnalise() {
-        // Feedback visual imediato: Muda o botão para estado de carregamento
         btnAnalise.setText("⏳ Analisando blocos de memória...");
         btnAnalise.setEnabled(false);
         btnAnalise.setBackground(new Color(240, 240, 240));
 
-        // Timer de 2.5 segundos para simular o processamento
         Timer timer = new Timer(2500, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mostrarSucesso();
             }
         });
-        timer.setRepeats(false); // Executa apenas uma vez
+        timer.setRepeats(false);
         timer.start();
     }
 
     private void mostrarSucesso() {
-        // Remove o botão de análise
         painelAcao.removeAll();
 
-        // Cria o card verde de sucesso fiel à image_4385dc
         JPanel cardSucesso = new JPanel(new GridLayout(2, 1));
-        cardSucesso.setBackground(new Color(240, 255, 240)); // Fundo verde bem claro
+        cardSucesso.setBackground(new Color(240, 255, 240));
         cardSucesso.setBorder(BorderFactory.createCompoundBorder(
-            new LineBorder(new Color(40, 200, 40), 2), // Borda verde forte
-            new EmptyBorder(5, 15, 5, 15) // Padding interno
+            new LineBorder(new Color(40, 200, 40), 2), 
+            new EmptyBorder(5, 15, 5, 15)
         ));
         cardSucesso.setPreferredSize(new Dimension(0, 50));
 
@@ -111,10 +107,9 @@ public class JanelaAnalise extends JInternalFrame {
         painelAcao.revalidate();
         painelAcao.repaint();
 
-        // Janela popup verde e atualização do visor
         JOptionPane.showMessageDialog(this, "Pista encontrada: 5_", "✓ Sucesso", JOptionPane.INFORMATION_MESSAGE);
         if (mainDesktop != null) {
-            mainDesktop.revelarPista(4, "5_"); // Atualiza o último índice (4) no Visor
+            mainDesktop.revelarPista(4, "5_");
         }
     }
 }

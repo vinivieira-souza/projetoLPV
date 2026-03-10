@@ -45,7 +45,6 @@ public class TelaLogin extends JFrame {
         painelCentral.setLayout(null);
         painelCentral.setVisible(false);
 
-        // Header do Painel
         JPanel headerBox = new JPanel();
         headerBox.setBounds(40, 30, 380, 40);
         headerBox.setBackground(FUNDO_DARK);
@@ -58,13 +57,11 @@ public class TelaLogin extends JFrame {
         headerBox.add(titulo);
         painelCentral.add(headerBox);
 
-        // Divisor
         JSeparator sep = new JSeparator();
         sep.setBounds(40, 85, 380, 2);
         sep.setForeground(BORDA_PAINEL);
         painelCentral.add(sep);
 
-        // Campo USUÁRIO
         JLabel lblUserTag = new JLabel("USUÁRIO:");
         lblUserTag.setForeground(VERDE_NEON);
         lblUserTag.setBounds(40, 115, 80, 30);
@@ -79,7 +76,6 @@ public class TelaLogin extends JFrame {
         boxUser.add(lblCursor);
         painelCentral.add(boxUser);
 
-        // Campo MISSÃO
         JLabel lblMissaoTag = new JLabel("MISSÃO:");
         lblMissaoTag.setForeground(VERDE_NEON);
         lblMissaoTag.setBounds(40, 165, 80, 30);
@@ -89,7 +85,6 @@ public class TelaLogin extends JFrame {
         JPanel boxMissao = createInputBox("DESCOBRIR SENHA", 120, 165);
         painelCentral.add(boxMissao);
 
-        // Botão INICIAR INVESTIGAÇÃO
         JButton btnIniciar = new JButton("[ INICIAR INVESTIGAÇÃO ]");
         btnIniciar.setBounds(100, 230, 260, 45);
         btnIniciar.setBackground(new Color(25, 35, 50));

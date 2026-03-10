@@ -21,7 +21,6 @@ public class JanelaEmail extends JInternalFrame {
     }
 
     private void configurarEstrutura() {
-        // Painel Esquerdo: Lista de E-mails
         painelLista = new JPanel();
         painelLista.setLayout(new BoxLayout(painelLista, BoxLayout.Y_AXIS));
         painelLista.setBackground(Color.WHITE);
@@ -30,7 +29,6 @@ public class JanelaEmail extends JInternalFrame {
         scrollLista.setPreferredSize(new Dimension(250, 0));
         scrollLista.setBorder(new TitledBorder(new LineBorder(Color.GRAY), "Caixa de Entrada (4)"));
 
-        // Painel Direito: Conteúdo do E-mail
         painelLeitura = new JPanel(new BorderLayout());
         painelLeitura.setBackground(Color.WHITE);
         painelLeitura.setBorder(new LineBorder(Color.GRAY));
